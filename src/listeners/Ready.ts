@@ -6,8 +6,14 @@ export default (client: Client): void => {
             return;
         }
         
-        console.log(client.guilds.cache);
+        // const Guilds = client.guilds.cache.map(guild => guild.id);
+        // console.log(Guilds);
+        console.log(`${client.guilds.cache}`);
 
         console.log(`${client.user.username} is online`);
     });
 };
+
+
+//                         1018115009508802590
+//[ '537339420605415425', '1018115009508802590' ]

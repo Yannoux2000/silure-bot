@@ -2,9 +2,16 @@
   "name": "silure-bot",
   "version": "1.0.0",
   "description": "Bot officiel pour le serveur discord [\"Le Rocher\"](https://discord.gg/db5tEt2tbT)",
-  "main": "index.js",
+  "main": "src/Bot.ts",
   "scripts": {
+    "build": "tsc",
+    "dev": "nodemon src/Bot.ts",
     "start": "ts-node src/Bot.ts"
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    }
   },
   "author": "",
   "license": "ISC",
