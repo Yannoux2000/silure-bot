@@ -11,7 +11,3 @@ export const HelloCmd: ICommand = {
     interaction.reply("PONG! TARBA !");
   }
 }
-
-// export function async execute(interaction: BaseInteraction) {
-// 	await interaction.reply('Pong!')
-// }

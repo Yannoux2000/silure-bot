@@ -1,12 +1,12 @@
 import { ICommand } from "./ICommand";
 import { HelloCmd } from "./Hello";
+import { Spammer } from "./Spammer";
 import { Client, Interaction } from "discord.js";
 
 
 export const CommandList: ICommand[] = [
-  HelloCmd
+  HelloCmd, Spammer
 ];
-
 
 export const onSlashCommand = async (client: Client, interaction: Interaction) => {
 
