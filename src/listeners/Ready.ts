@@ -1,16 +1,22 @@
-import { Client } from "discord.js";
+import { Client, Events, REST, Routes } from "discord.js";
 
-export default (client: Client): void => {
-    client.on("ready", async () => {
-        if (!client.user || !client.application) {
-            return;
-        }
-        
+export default function ready(client: Client, commandList: any): void {
+    client.once(Events.ClientReady, async () => {
+        console.log(`${client.user?.username} est en ligne`);
+
         // const Guilds = client.guilds.cache.map(guild => guild.id);
         // console.log(Guilds);
         console.log(`${client.guilds.cache}`);
 
-        console.log(`${client.user.username} is online`);
+        const rest = new REST({ version: "9" }).setToken(process.env.TOKEN as string);
+        const commandData = commandList.map((command: any) => command.data);
+
+        await rest.put(
+            Routes.applicationCommands(
+                client.user?.id || "missing id"
+            ),
+            { body: commandData }
+        );
     });
 };
 

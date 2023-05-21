@@ -1,14 +1,22 @@
 import 'dotenv/config';
-import { Client, ClientOptions } from "discord.js";
+import { Client, GatewayIntentBits } from "discord.js";
 import ready from "./listeners/Ready";
+import interactionCreate from './listeners/interactionCreate';
+import { validateEnv } from './validateEnv';
+import { CommandList, onSlashCommand } from './commands/CommandList';
 
-const token = process.env.TOKEN; // add your token here
+(async () => {
+  if(!validateEnv()) return;
 
-console.log("Bot is starting...");
-
-const client = new Client({
-    intents: []
-});
-client.login(token);
-
-ready(client);
+  const token = process.env.TOKEN; // add your token here  
+  console.log("Bot is starting...");
+  
+  const client = new Client({
+      intents: [GatewayIntentBits.Guilds]
+  });
+  
+  ready(client, CommandList);
+  interactionCreate(client, onSlashCommand);
+  
+  await client.login(token);
+})();
